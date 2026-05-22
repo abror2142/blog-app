@@ -24,7 +24,7 @@ class SlugGenerator implements SlugGeneratorInterface
             $slug = $baseSlug . '-' . $suffix++;
         }
 
-        return uniqid($title, true);
+        return $slug;
     }
 
 }
