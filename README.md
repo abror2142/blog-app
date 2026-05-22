@@ -67,30 +67,22 @@ blog_bundle:
 ## Installing the bundle in another app
 
 1. Add a Composer path or VCS repository pointing to `blog-bundle/`.
-2. `composer require demo/blog-bundle`.
-3. Register `Demo\BlogBundle\BlogBundle` in `config/bundles.php`.
+2. `composer require web-dev/blog-bundle`.
+3. Register `WebDev\BlogBundle\WebDevBlogBundle` in `config/bundles.php`.
 4. Import routes (see above).
 5. Configure `blog:` settings.
-6. Add the migrations path in `config/packages/doctrine_migrations.yaml`:
-
-```yaml
-doctrine_migrations:
-    migrations_paths:
-        "Demo\\BlogBundle\\Migrations": '%kernel.project_dir%/vendor/demo/blog-bundle/migrations'
-```
-
 7. Run `php bin/console doctrine:migrations:migrate`.
 
 ## Routes
 
 | Method | Path | Name | Action |
 |--------|------|------|--------|
-| GET | `/blog/` | `blog_post_index` | List (paginated, filterable) |
-| GET | `/blog/new` | `blog_post_new` | Create form |
-| POST | `/blog/new` | `blog_post_new` | Create |
-| GET | `/blog/{id}` | `blog_post_show` | Read |
-| GET/POST | `/blog/{id}/edit` | `blog_post_edit` | Update |
-| POST | `/blog/{id}/delete` | `blog_post_delete` | Delete |
+| GET | `/blog/` | `blog_index` | List (paginated, filterable) |
+| GET | `/blog/new` | `blog_new` | Create form |
+| POST | `/blog/new` | `blog_new` | Create |
+| GET | `/blog/{slug}` | `blog_show` | Read |
+| GET/POST | `/blog/{slug}/edit` | `blog_edit` | Update |
+| POST | `/blog/{slug}/delete` | `blog_delete` | Delete |
 
 
 ## Architecture notes
