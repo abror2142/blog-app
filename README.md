@@ -6,41 +6,50 @@ A reusable Symfony bundle that implements blog post CRUD, plus a minimal demo ap
 
 - PHP 8.1+
 - Composer 2
-- Symfony 7.2 (demo app)
+- Symfony 6.4 (demo app)
 - SQLite (default) or any Doctrine-supported database
 
 ## Project structure
 
 ```
-blog-demo/
-├── blog-bundle/          # Reusable BlogBundle (installable via Composer path/repo)
-└── webapp/               # Demo Symfony application
+blog-app/
+
+├── webapp/                     # Symfony application
+│   ├── bundle/
+│   │   └── WebDev/
+│   │       └── BlogBundle/             # Reusable BlogBundle
+│   ├── config/
+│   ├── src/
+│   ├── templates/
+│   ├── composer.json
+│   └── ...
 ```
 
 ### Bundle highlights
 
-- **Entity:** `Post` with id, title, content, slug, status (`draft` / `published`), timestamps
-- **Layers:** `PostRepository`, `PostService` (+ interfaces), `SlugGenerator`, thin `PostController`
-- **UI:** Twig forms with CSRF protection and auto-escaping (XSS-safe output)
+- **Entity:** `Blog` with id, title, content, slug, status (`draft` / `published`), timestamps
+- **Layers:** `BlogRepository`, `BlogService` (+ interfaces), `SlugGenerator`, thin `BlogController`
+- **UI:** Twig forms
 - **Extras:** pagination, filter by title/status, validation constraints, Doctrine migration
 
 ## Quick start
 
 ```bash
-cd webapp
-composer install
-cp ../.env.example .env   # or edit .env directly
+git clone https://github.com/abror2142/blog-app.git
+cd blog-app
+cp ../.env.example .env
 # Set APP_SECRET in .env
+composer install
 
 php bin/console doctrine:migrations:migrate --no-interaction
-symfony server:start -d   # or: php -S 127.0.0.1:8000 -t public
+symfony server:start -d
 ```
 
 Open [http://127.0.0.1:8000/blog/](http://127.0.0.1:8000/blog/) (or the URL shown by the Symfony CLI).
 
 ## Configuration
 
-In `webapp/config/packages/blog.yaml` (create if needed):
+In `blog-app/config/packages/blog.yaml` (create if needed):
 
 ```yaml
 blog:
@@ -83,19 +92,11 @@ doctrine_migrations:
 | GET/POST | `/blog/{id}/edit` | `blog_post_edit` | Update |
 | POST | `/blog/{id}/delete` | `blog_post_delete` | Delete |
 
-## Tests
-
-```bash
-cd webapp
-php bin/phpunit
-```
-
-Includes unit tests for `SlugGenerator` and functional CRUD/filter tests against SQLite.
 
 ## Architecture notes
 
-- Business logic lives in `PostService`, not the controller (SOLID / SRP).
-- `PostServiceInterface` and `SlugGeneratorInterface` allow swapping implementations.
+- Business logic lives in `BlogService`.
+- `BlogServiceInterface` and `SlugGeneratorInterface` allow swapping implementations.
 - Slugs are generated from the title and deduplicated (`hello-world`, `hello-world-2`, …).
 - Forms use Symfony Validator constraints on the entity; the service validates before persist.
 
