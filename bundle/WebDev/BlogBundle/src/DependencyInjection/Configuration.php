@@ -19,7 +19,7 @@ class Configuration implements ConfigurationInterface
                     ->cannotBeEmpty()
                     ->end()
                 ->integerNode('blogs_per_page')
-                    ->defaultValue(5)
+                    ->defaultValue(2)
                     ->min(1)
                     ->max(100)
                 ->end()
