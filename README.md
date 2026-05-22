@@ -37,7 +37,7 @@ blog-app/
 ```bash
 git clone https://github.com/abror2142/blog-app.git
 cd blog-app
-cp ../.env.example .env
+cp .env.example .env
 # Set APP_SECRET in .env
 composer install
 
