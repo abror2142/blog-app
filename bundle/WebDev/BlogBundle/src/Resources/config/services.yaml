@@ -1,0 +1,25 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+
+  WebDev\BlogBundle\:
+    resource: '../../'
+    exclude:
+      - '../../DependencyInjection/'
+      - '../../Entity/'
+      - '../../DTO/'
+      - '../../Enum/'
+      - '../../Exception/'
+      - '../../WebDevBlogBundle.php'
+
+  WebDev\BlogBundle\Service\Contract\PostServiceInterface:
+    alias: WebDev\BlogBundle\Service\PostService
+
+  WebDev\BlogBundle\Service\Contract\SlugGeneratorInterface:
+    alias: WebDev\BlogBundle\Service\SlugGenerator
+    public: true
+
+  WebDev\BlogBundle\Controller\:
+    resource: '../../Controller/'
+    tags: ['controller.service_arguments']

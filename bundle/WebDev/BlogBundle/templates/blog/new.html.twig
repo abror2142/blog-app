@@ -1,0 +1,39 @@
+{% extends '@WebDevBlog/layout.html.twig' %}
+
+{% form_theme form 'bootstrap_5_layout.html.twig' %}
+
+{% block content %}
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <h4 class="mb-4">Create Blog</h4>
+
+            {{ form_start(form) }}
+
+            <div class="mb-3">
+                {{ form_label(form.title) }}
+                {{ form_widget(form.title, {'attr': {'class': 'form-control'}}) }}
+                {{ form_errors(form.title) }}
+            </div>
+
+            <div class="mb-3">
+                {{ form_label(form.content) }}
+                {{ form_widget(form.content, {'attr': {'class': 'form-control', 'rows': 6}}) }}
+                {{ form_errors(form.content) }}
+            </div>
+
+            <div class="mb-3">
+                {{ form_label(form.status) }}
+                {{ form_widget(form.status, {'attr': {'class': 'form-select'}}) }}
+                {{ form_errors(form.status) }}
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100">
+                Submit
+            </button>
+
+            {{ form_end(form) }}
+
+        </div>
+    </div>
+
+{% endblock %}

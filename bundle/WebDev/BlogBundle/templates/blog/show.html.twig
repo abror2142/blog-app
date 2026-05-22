@@ -1,0 +1,59 @@
+{% extends '@WebDevBlog/layout.html.twig' %}
+
+{% block content %}
+
+    <div class="container py-4">
+
+        {% if blog is null %}
+            <div class="alert alert-danger">
+                Blog not found.
+            </div>
+        {% else %}
+
+            <div class="mb-3">
+                <a href="{{ path('blog_index') }}" class="btn btn-outline-secondary btn-sm">
+                    ← Back
+                </a>
+            </div>
+
+            <div class="card shadow-sm border-0">
+                <div class="card-body p-4">
+
+                    <h2 class="mb-3 fw-bold">
+                        {{ blog.title }}
+                    </h2>
+
+                    <div class="d-flex gap-3 mb-4 text-muted small">
+                        <div>
+                            📅 {{ blog.createdAt|date('Y-m-d H:i') }}
+                        </div>
+
+                        <div>
+                            🏷 {{ blog.status.value }}
+                        </div>
+                    </div>
+
+                    <hr>
+
+                    <div class="mt-4 fs-5 lh-lg">
+                        {{ blog.content|nl2br }}
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="mt-4 d-flex gap-2">
+                <a href="{{ path('blog_edit', {'slug': blog.slug}) }}" class="btn btn-primary">
+                    Edit
+                </a>
+
+                <a href="{{ path('blog_index') }}" class="btn btn-secondary">
+                    Back to list
+                </a>
+            </div>
+
+        {% endif %}
+
+    </div>
+
+{% endblock %}

@@ -1,0 +1,3 @@
+blog:
+  route_prefix: '/blog'
+  blogs_per_page: 2

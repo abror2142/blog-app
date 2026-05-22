@@ -1,0 +1,51 @@
+{% extends '@WebDevBlog/layout.html.twig' %}
+
+{% form_theme form 'bootstrap_5_layout.html.twig' %}
+
+{% block content %}
+
+    <div class="container py-4">
+
+        <div class="mb-3">
+            <a href="{{ path('blog_show', {'slug': blog.slug}) }}" class="btn btn-outline-secondary btn-sm">
+                ← Back
+            </a>
+        </div>
+
+        <div class="card shadow-sm border-0">
+            <div class="card-body p-4">
+
+                <h3 class="mb-4">Edit Blog</h3>
+
+                {{ form_start(form) }}
+
+                <div class="mb-3">
+                    {{ form_label(form.title) }}
+                    {{ form_widget(form.title, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_errors(form.title) }}
+                </div>
+
+                <div class="mb-3">
+                    {{ form_label(form.content) }}
+                    {{ form_widget(form.content, {'attr': {'class': 'form-control', 'rows': 6}}) }}
+                    {{ form_errors(form.content) }}
+                </div>
+
+                <div class="mb-3">
+                    {{ form_label(form.status) }}
+                    {{ form_widget(form.status, {'attr': {'class': 'form-select'}}) }}
+                    {{ form_errors(form.status) }}
+                </div>
+
+                <button class="btn btn-primary w-100">
+                    Update
+                </button>
+
+                {{ form_end(form) }}
+
+            </div>
+        </div>
+
+    </div>
+
+{% endblock %}

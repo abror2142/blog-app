@@ -1,0 +1,41 @@
+{% set filters = {
+    search: app.request.get('search'),
+    status: app.request.get('status')
+} %}
+
+{% if pageCount > 1 %}
+    <nav>
+        <ul class="pagination">
+            {% if previous is defined %}
+                <li class="page-item">
+                    <a class="page-link btn-sm"
+                       href="{{ path(route, query|merge(filters|merge({
+                            (pageParameterName): previous
+                        }))) }}">
+                        Prev
+                    </a>
+                </li>
+            {% endif %}
+
+            {% for page in pagesInRange %}
+                <li class="page-item {{ page == current ? 'active' : '' }}">
+                    <a class="page-link btn-sm"
+                       href="{{ path(route, query|merge({(pageParameterName): page})) }}">
+                        {{ page }}
+                    </a>
+                </li>
+            {% endfor %}
+
+            {% if next is defined %}
+                <li class="page-item">
+                    <a class="page-link btn-sm"
+                       href="{{ path(route, query|merge(filters|merge({
+                           (pageParameterName): next
+                       }))) }}">
+                        Next →
+                    </a>
+                </li>
+            {% endif %}
+        </ul>
+    </nav>
+{% endif %}
