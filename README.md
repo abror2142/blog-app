@@ -34,6 +34,8 @@ blog-app/
 
 ## Quick start
 
+### For Instant installation, run this
+
 ```bash
 git clone https://github.com/abror2142/blog-app.git
 cd blog-app
@@ -57,7 +59,7 @@ blog:
     posts_per_page: 10      # pagination size (1–100)
 ```
 
-The demo app imports bundle routes in `webapp/config/routes.yaml`:
+The demo app imports bundle routes in `blog-app/config/routes.yaml`:
 
 ```yaml
 blog_bundle:
