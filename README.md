@@ -1,4 +1,4 @@
-# Blog Demo — Symfony BlogBundle
+# Blog App — Symfony BlogBundle
 
 A reusable Symfony bundle that implements blog post CRUD, plus a minimal demo application that installs and exercises the bundle.
 
